@@ -31,7 +31,11 @@ jobs:
       - name: Terraform init
         id: init
         run: terraform init
-        
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          
       - name: Terraform fmt
         id: fmt
         run: terraform fmt
@@ -47,7 +51,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      ggdrydydrydyrdyrdtrdrtd
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+       
+      
       - name: comment pull request    
         uses: actions/github-script@0.9.0
         env:
@@ -74,5 +80,4 @@ jobs:
             repo: context.repo.repo,
             body: output
             })
-          
       
